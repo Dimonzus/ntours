@@ -1,0 +1,13 @@
+h1=title
+
+if tours
+    each tour in tours
+        div
+            h2= tour.name
+            h3= 'Price: $' + tour.price
+            p= tour.summary
+            br
+
+else
+    p No tours
+
