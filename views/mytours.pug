@@ -5,9 +5,8 @@ block content
    
       .card-container
         each b in bookings
-          if b.canceled!= true 
-            each tour in tours
-          
+          each tour in tours
+            if b.canceled != true 
               .card
                 .card__header
                   .card__picture
