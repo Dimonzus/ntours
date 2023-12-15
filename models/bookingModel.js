@@ -22,6 +22,10 @@ const bookingSchema = new mongoose.Schema({
   paid: {
     type: Boolean,
     default: true
+  },
+  canceled: {
+    type: Boolean,
+    default: false
   }
 });
 

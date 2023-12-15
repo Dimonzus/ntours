@@ -48,11 +48,20 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
 exports.createBookingCheckout = catchAsync(async (req, res, next) => {
   // This is only TEMPORARY, because it's UNSECURE: everyone can make bookings without paying
   const { tour, user, price } = req.query;
+  //console.log(tour, price, user);
 
   if (!tour && !user && !price) return next();
   await Booking.create({ tour, user, price });
 
   res.redirect(req.originalUrl.split('?')[0]);
+});
+
+exports.cancelBookedTour = catchAsync(async (req, res, next) => {
+  const filter = { _id: req.params.id };
+  const update = { canceled: true };
+
+  await Booking.findOneAndUpdate(filter, update);
+  res.redirect('/my-tours');
 });
 
 exports.createBooking = factory.createOne(Booking);
